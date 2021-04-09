@@ -2,26 +2,19 @@
 """
 Created on Sun Dec 27 23:19:44 2020
 
-@author: kacper
+@author: AvirFrog
 """
 
 #potrzebne biblioteki
 import speech_recognition as sr
 import pyttsx3 as tts
 from playsound import playsound
+import time
 
 version = "1.0"
-author = "Avir Frog"
+author = "AvirFrog"
 
-'''
-Ponizszy slownik ma za zadanie konwertowac "uslyszane" przez Mariana slowa do 
-odpowiedniej formy. Marian niestety ma problem i czasem zamiast interpretowac
-liczbe jako liczbe  interpretuje ja jako slowo, np. gdy powiem dwa dodać dwa
-zamiast wykonac polecenie 2 + 2 proboje on skonkatenowac slowa dwa i dwa.
-'''
-liczby ={'jeden': 1, '1': 1, 'dwa': 2, '2': 2, 
-         'trzy': 3, '3': 3, 'cztery': 4, '4': 4,  
-         'pięć': 5, '5': 5}
+sleep_time= 3
 
 r = sr.Recognizer()
 engine = tts.init()
@@ -63,10 +56,11 @@ while True:
                 print(txt)
                 speak("Witaj, co mogę dla Ciebie zrobić?")
                 continue
-            elif txt != 0 and txt[1] == 'tryb' and txt[2] == 'bojowy':
+            elif txt != 0 and txt[1] == 'włącz' and txt[2] == 'muzykę':
                 print(txt)
-                speak("Włączam tryb bojowy")
-                playsound('x.mp3')
+                speak("Włączam muzykę")
+                playsound('WikingFoxMusic_music.mp3')
+                speak("Mam nadzieję że muzyka Ci się podobała, bo mi bardzo")
             elif txt != 0 and txt[1] == 'wyloguj':
                 print(txt)
                 speak("Dozobaczenia")
@@ -77,10 +71,7 @@ while True:
                 if txt != 0 and txt[3] == 'dodać':
                     print(txt)
                     speak("dodawanie")
-                    n1 = int(txt[2])
-                    n2 = int(txt[4])
-                    print(n1)
-                    print(n2)
+                    n1, n2 = int(txt[2]), int(txt[4])
                     wynik = n1 + n2
                     mwynik = str(wynik)
                     speak(f'{str(n1)} dodać {str(n2)} jest równe {mwynik}')
@@ -88,23 +79,15 @@ while True:
                 elif txt != 0 and (txt[3] == '-' or txt[3] == 'minus'):
                     print(txt)
                     speak("odejmowanie")
-                    n1 = int(txt[2])
-                    n2 = int(txt[4])
-                    print(n1)
-                    print(n2)
+                    n1, n2 = int(txt[2]), int(txt[4])
                     wynik = n1 - n2
                     mwynik = str(wynik)
-                    print(wynik)
-                    print(mwynik)
                     speak(f'{str(n1)} minus {str(n2)} jest równe {mwynik}')
                     continue
                 elif txt != 0 and txt[3] == 'na':
                     print(txt)
                     speak("dzielenie")
-                    n1 = int(txt[2])
-                    n2 = int(txt[4])
-                    print(n1)
-                    print(n2)
+                    n1, n2 = int(txt[2]), int(txt[4])
                     wynik = rounding_of_numbers((n1 / n2), 2)
                     mwynik = str(wynik)
                     speak(f'{str(n1)} podzielić {str(n2)} jest równe {mwynik}')
@@ -112,17 +95,14 @@ while True:
                 elif txt != 0 and (txt[3] == 'x' or txt[3] == 'razy'):
                     print(txt)
                     speak("mnożenie")
-                    n1 = int(txt[2])
-                    n2 = int(txt[4])
-                    print(n1)
-                    print(n2)
+                    n1, n2 = int(txt[2]), int(txt[4])
                     wynik = n1 * n2
                     mwynik = str(wynik)
                     speak(f'{str(n1)} razy {str(n2)} jest równe {mwynik}')
                     continue
                 else:
                     print(txt)
-                    speak("Potrafię tylko dodawać, odejmować, dzielić i mnożyć dlatego nie wiem co to {txt[3]}")
+                    speak(f"Potrafię tylko dodawać, odejmować, dzielić i mnożyć dlatego nie wiem co to {txt[3]}")
                     continue
             elif txt != 0 and txt[1] == 'informacje':
                 print(txt)
@@ -136,4 +116,7 @@ while True:
             print(txt)
             continue
     except:
-        print(".")
+        time.sleep(sleep_time)
+        speak("Skoro nic nie mówisz to wyłączam się. Bywaj")
+        break
+     
