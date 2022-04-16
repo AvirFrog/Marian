@@ -9,5 +9,4 @@
 ## Błędy:
 
 - Wykorzystanie match case nie poprawiło działania bota
-- Musiałem powielić warunek mnożenia (*chwilowe*)
 - Niektóre rzeczy nie dzialają tak jak bym chciał (*v1.0 bardziej stabline*)
