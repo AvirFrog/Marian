@@ -85,14 +85,7 @@ while True:
                                 mwynik = str(rounding_of_numbers((n1 / n2), 2))
                                 speak(f'{str(n1)} podzielić {str(n2)} jest równe {mwynik}')
                                 continue
-                            case "x":
-                                print(txt)
-                                speak("mnożenie")
-                                n1, n2 = int(txt[2]), int(txt[4])
-                                mwynik = str(n1 * n2)
-                                speak(f'{str(n1)} razy {str(n2)} jest równe {mwynik}')
-                                continue
-                            case "razy":
+                            case "x" | "razy":
                                 print(txt)
                                 speak("mnożenie")
                                 n1, n2 = int(txt[2]), int(txt[4])
